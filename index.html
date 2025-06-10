@@ -1,0 +1,105 @@
+
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Nur’a Sürpriz</title>
+  <style>
+    body {
+      background-color: #fff0f5;
+      font-family: 'Georgia', serif;
+      text-align: center;
+      padding: 20px;
+    }
+    h1 {
+      font-size: 2rem;
+      color: #d63384;
+    }
+    button {
+      padding: 10px 20px;
+      font-size: 1.2rem;
+      margin: 10px;
+      border: none;
+      border-radius: 10px;
+      background-color: #ff69b4;
+      color: white;
+      cursor: pointer;
+    }
+    .hidden { display: none; }
+    .poem-line {
+      font-size: 1.2rem;
+      margin: 10px 0;
+      color: #333;
+    }
+    .heart {
+      color: red;
+      font-size: 2rem;
+      animation: float 2s ease-in-out infinite;
+    }
+    @keyframes float {
+      0% { transform: translateY(0); }
+      50% { transform: translateY(-20px); }
+      100% { transform: translateY(0); }
+    }
+    #bear {
+      width: 150px;
+      margin-top: 20px;
+    }
+  </style>
+</head>
+<body>
+  <h1>Nur, beni seviyor musun?</h1>
+  <button onclick="showLove()">Evet 💖</button>
+  <button onclick="alert('Yanlış cevap 😢')">Hayır ❌</button>
+
+  <div id="poem" class="hidden"></div>
+  <img id="bear" class="hidden" src="https://i.ibb.co/4sMqKLc/bear-balloon.png" alt="Ayıcık" />
+  <audio id="audio" src="haydi-soyle.mp3"></audio>
+
+  <script>
+    const poemLines = [
+      "Sen gözlerinle cenneti unutturursun,",
+      "Saçlarınla zamanı durdurursun.",
+      "Ama ben seni bakışlarında değil,",
+      "Sessizliğinde sevdim.",
+      "Dudakların bir şiir gibi kıpırdadığında,",
+      "Dünya susar — ben yalnız seni duyarım.",
+      "Ama ben seni sesin için değil,",
+      "Ruhumun yankısı olduğun için sevdim.",
+      "Çünkü sen,",
+      "Sadece bir ten değil —",
+      "Benim sonsuzluğumda atan kalpsin.",
+      "Seninle tam,",
+      "sensiz yarımım.",
+      "— Senin ruh eşin, olmak için varım",
+      "Narin bir dokunuşunla başlar tüm evren,",
+      "Ey gözlerinde Galata’yı unutturan kadın...",
+      "Uzun gecelerin sabahı sensin,",
+      "Dudaklarınla değil, ruhunla uyandırırsın beni...",
+      "Rüyaların bile gerçek olamadığı bir yerdeyim,",
+      "Çünkü ben senin içinde yaşayan bir ruhum,",
+      "Sen benim içimde uçuşan Nur’um...",
+      "💞 Bu sarılma sadece sana özel, Nur 💞"
+    ];
+    function showLove() {
+      document.getElementById("audio").play();
+      const poemDiv = document.getElementById("poem");
+      poemDiv.classList.remove("hidden");
+      let i = 0;
+      const interval = setInterval(() => {
+        if (i < poemLines.length) {
+          const line = document.createElement("div");
+          line.className = "poem-line";
+          line.textContent = poemLines[i];
+          poemDiv.appendChild(line);
+          i++;
+        } else {
+          clearInterval(interval);
+          document.getElementById("bear").classList.remove("hidden");
+        }
+      }, 1500);
+    }
+  </script>
+</body>
+</html>
